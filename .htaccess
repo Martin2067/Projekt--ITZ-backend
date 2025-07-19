@@ -1,0 +1,22 @@
+# .htaccess v C:\Users\ammg\Desktop\ITProjekt\it_zakazky_backend\
+
+# Vždy povolit CORS hlavičky pro všechny požadavky
+<IfModule mod_headers.c>
+    Header set Access-Control-Allow-Origin "*"
+    Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+    Header set Access-Control-Allow-Headers "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+</IfModule>
+
+# Aktivace mod_rewrite pro přepisování URL
+RewriteEngine On
+
+# Pokud je požadavek typu OPTIONS, okamžitě ukončíme zpracování s 200 OK
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Pravidla pro přesměrování URL pro hezké API endpointy
+# Přesměruje např. /api/user/register na /api/user/register.php
+# Tyto řádky zachováme, protože jsi s nimi dostával 201/200, což naznačuje, že fungují pro nalezení souboru
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^api/(.*)$ api/$1.php [NC,L]

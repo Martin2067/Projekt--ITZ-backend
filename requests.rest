@@ -1,0 +1,74 @@
+### Test registrace nového klienta
+POST http://localhost/it_zakazky_backend/api/user/register
+Content-Type: application/json
+
+{
+    "email": "klient5@example.com",
+    "password": "mojebezpecneheslo5",
+    "full_name": "Jan5 Klient",
+    "phone": "777111234",
+    "role": "client"
+}
+
+### Test registrace nového odborníka
+POST http://localhost/it_zakazky_backend/api/user/register
+Content-Type: application/json
+
+{
+    "email": "odborni4k@example.com",
+    "password": "silneheslo4",
+    "full_name": "Petr1 Odborník",
+    "role": "expert",
+    "bio": "Specialista na tvorbu moderních webových aplikací v Reactu a PHP.",
+    "portfolio_url": "https://www.odbornikpetr.cz",
+    "hourly_rate": 850.00,
+    "price_type": "both"
+}
+
+### Test registrace s již existujícím e-mailem
+POST http://localhost/it_zakazky_backend/api/user/register
+Content-Type: application/json
+
+{
+    "email": "klient@example.com",
+    "password": "jineheslo",
+    "full_name": "Další Klient",
+    "role": "client"
+}
+
+### Test přihlášení existujícího uživatele
+POST http://localhost/it_zakazky_backend/api/user/login
+Content-Type: application/json
+
+{
+    "email": "klient@example.com",
+    "password": "mojebezpecneheslo"
+}
+
+### Test přihlášení s nesprávným heslem
+POST http://localhost/it_zakazky_backend/api/user/login
+Content-Type: application/json
+
+{
+    "email": "klient@example.com",
+    "password": "spatneheslo"
+}
+
+### Test přihlášení neexistujícího uživatele
+POST http://localhost/it_zakazky_backend/api/user/login
+Content-Type: application/json
+
+{
+    "email": "neexistujici@example.com",
+    "password": "heslo"
+}
+
+
+POST http://localhost/it_zakazky_backend/api/jobs/create.php
+Content-Type: application/json
+### Test vytvoření nové zakázky
+{
+    "title": "Potřebuji novou mobilní aplikaci pro rezervace",
+    "description": "Chci jednoduchou mobilní aplikaci (iOS a Android) pro rezervace stolů v restauraci. S funkcemi pro zobrazení dostupnosti a potvrzení rezervace.",
+    "client_id": 12
+}
